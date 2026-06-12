@@ -1,1 +1,3 @@
-train.py, FileNotFoundError: [Errno 2] No such file or directory: 'config.json', the config.json was deleted and doesnt exist, created config.json with the necessary contents, 
+train.py, FileNotFoundError: [Errno 2] No such file or directory: 'config.json', the config.json was deleted and doesnt exist, created config.json with the necessary contents, 71b36a4c5de39986e3f38bc662f5c2152a7dfa93
+
+train.py -> data.py, FileNotFoundError: [Errno 2] No such file or directory: 'data\\cells_data.pt', the files in the backup on the cloud do not have _data appended to their names, removed the "_data" addition from  line 11, 
