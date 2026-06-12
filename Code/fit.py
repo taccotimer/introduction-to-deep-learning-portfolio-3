@@ -21,7 +21,7 @@ class Trainer:
             images, labels = images.to(self.device), labels.to(self.device)
             
             outputs = self.model(images)
-            loss = self.criterion(outputs, labels)
+            loss = self.criterion(outputs, labels.squeeze())
             
             loss.backward()
             self.optimizer.step()
