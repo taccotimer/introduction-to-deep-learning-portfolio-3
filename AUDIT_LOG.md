@@ -1,0 +1,1 @@
+train.py, FileNotFoundError: [Errno 2] No such file or directory: 'config.json', the config.json was deleted and doesnt exist, created config.json with the necessary contents, 
