@@ -65,6 +65,7 @@ class AlexNet(nn.Module):
     def __init__(self, **kwargs):
         super().__init__()
 
+        num_classes = kwargs.get("num_classes", 11)
         drop_rate = kwargs.get("drop_rate", 0.5)
         
         self.features = nn.Sequential(
@@ -94,7 +95,7 @@ class AlexNet(nn.Module):
             nn.Dropout(p=drop_rate),
             nn.Linear(1024, 1024),
             nn.ReLU(inplace=True),
-            nn.Linear(1024, 11),
+            nn.Linear(1024, num_classes),
         )
 
     def forward(self, x):
