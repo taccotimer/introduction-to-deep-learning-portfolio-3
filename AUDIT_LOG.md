@@ -6,4 +6,6 @@ train.py -> fit.py -> models.py, RuntimeError: mat1 and mat2 shapes cannot be mu
 
 train.py -> fit.py, RuntimeError: 0D or 1D target tensor expected, multi-target not supported, when the cross_entropy_loss receives the labels it received an unnessecary dimension of (,1) which does not fit the outputs that do not have this dimension, used the torch.squeeze method with labels.squeeze() in line 24, be0da2eb25c9cd572584822595b238d1067acc83
 
-train.py -> fit.py, RuntimeError: 0D or 1D target tensor expected, multi-target not supported, when the cross_entropy_loss receives the labels it received an unnessecary dimension of (,1) which does not fit the outputs that do not have this dimension, used the torch.squeeze method with labels.squeeze() in line 46, 
+train.py -> fit.py, RuntimeError: 0D or 1D target tensor expected, multi-target not supported, when the cross_entropy_loss receives the labels it received an unnessecary dimension of (,1) which does not fit the outputs that do not have this dimension, used the torch.squeeze method with labels.squeeze() in line 46, 42b608ca43d0079de56bf4334a1f55a3c050afe2
+
+train.py -> fit.py, Training and Validation accuracys showing up as impossible percentages (e.g 1112%), since labels is of shape (batch_size,1) the predicted thensor and the labels tesor get broadcast into (batch_size, batch_size) which results in way more "correct" predictions than are actually possible leading to the percentage calculation returning larger than possible percentages, fixed by using labels.squeeze() in lines 32 and 51, 

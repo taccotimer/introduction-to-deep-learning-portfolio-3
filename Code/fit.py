@@ -29,7 +29,7 @@ class Trainer:
             running_loss += loss.item() * images.size(0)
             _, predicted = outputs.max(1)
             sum += labels.size(0)
-            correct += predicted.eq(labels).sum().item()
+            correct += predicted.eq(labels.squeeze()).sum().item()
             
         return running_loss / sum, (correct / sum) * 100
 
@@ -48,7 +48,7 @@ class Trainer:
                 running_loss += loss.item() * images.size(0)
                 _, predicted = outputs.max(1)
                 total += labels.size(0)
-                correct += predicted.eq(labels).sum().item()
+                correct += predicted.eq(labels.squeeze()).sum().item()
                 
         return running_loss / total, (correct / total) * 100
 
