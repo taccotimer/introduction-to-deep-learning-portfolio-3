@@ -37,7 +37,7 @@ def main():
     model = model_class(
         in_channels=config["CHANNELS"],
         num_classes=config["NUM_CLASSES"],
-        drop_rate=0.99,
+        drop_rate=0.3,
         activation_str=None,
     ).to(device)
     criterion = nn.CrossEntropyLoss()
