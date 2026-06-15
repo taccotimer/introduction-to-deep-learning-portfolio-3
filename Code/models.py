@@ -34,6 +34,8 @@ class VGGBlock(nn.Module):
             layers.append(nn.BatchNorm2d(out_channels))
             layers.append(nn.ReLU(inplace=True))
 
+            current_in_channels = out_channels
+
         layers.append(nn.MaxPool2d(kernel_size=2, stride=2))
         self.block = nn.Sequential(*layers)
 
