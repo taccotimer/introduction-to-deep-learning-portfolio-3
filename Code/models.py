@@ -28,7 +28,7 @@ class VGGBlock(nn.Module):
                     current_in_channels,
                     out_channels,
                     kernel_size=kernel_size,
-                    padding=padding,
+                    padding= 0 if is_config_c_tail else padding,
                 )
             )
             layers.append(nn.BatchNorm2d(out_channels))
