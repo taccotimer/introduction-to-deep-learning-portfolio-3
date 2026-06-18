@@ -24,7 +24,7 @@ def main():
     elif torch.backends.mps.is_available():
         device = torch.device("mps")
     elif torch.xpu.is_available():
-        device = torch.device('xpu')
+        device = torch.device("xpu")
     else:
         device = torch.device("cpu")
     print(f"Training executing on device: {device}")
@@ -39,7 +39,7 @@ def main():
     model = model_class(
         in_channels=config["CHANNELS"],
         num_classes=config["NUM_CLASSES"],
-        drop_rate=0.3,
+        drop_rate=config["DROP_RATE"],
         activation_str=None,
     ).to(device)
     criterion = nn.CrossEntropyLoss()
