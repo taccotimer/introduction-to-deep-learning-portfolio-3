@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+import models
 import numpy as np
 import torch
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
@@ -14,7 +15,7 @@ def test_models():
     """
     datapath = "./data"
     datasets = ["cells", "chest", "lesions", "orgs"]
-    models = ["AlexNet", "VGG16", "ResNet18"]
+    models_list = ["AlexNet", "VGG16", "ResNet18"]
 
     results = defaultdict(dict)
 
@@ -23,10 +24,21 @@ def test_models():
             data=dataset, data_path=datapath, batch_size=64
         )
 
-        for model_name in models:
-            test_model = torch.load(
-                f"{model_name}_{dataset}_best.pth", weights_only=False
+        for model_name in models_list:
+            model_class = getattr(models, model_name)
+            test_model = model_class(
+                in_channels=channels,
+                num_classes=num_classes,
+                drop_rate=0.0,
+                activation_str="ReLU",
             )
+
+            state_dict = torch.load(
+                f"{model_name}_{dataset}_best.pth",
+                weights_only=False,
+                map_location="cpu",
+            )
+            test_model.load_state_dict(state_dict)
             test_model.eval()
 
             all_predictions, all_labels = [], []
@@ -73,9 +85,9 @@ def test_models():
         print(
             "| Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |"
         )
-        print(f"| {'-'*12}'|{'-'*15}'|{'-'*16}'|{'-'*13}'|{'-'*15}'|{'-'*20}'|")
+        print(f"|{'-'*12}|{'-'*15}|{'-'*16}|{'-'*13}|{'-'*15}|{'-'*20}|")
 
-        for model_name in models:
+        for model_name in models_list:
             metrics = results[dataset][model_name]
             meets_exp = (
                 "✓ Yes" if metrics["accuracy"] >= expected_min_acc[dataset] else "✗ No"

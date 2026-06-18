@@ -5,8 +5,8 @@ from train import main
 
 def train_main_runs():
     for config_file in [
-        "config_files/AlexNet_config.json",
-        "config_files/ResNet18_config.json",
+        # "config_files/AlexNet_config.json",
+        # "config_files/ResNet18_config.json",
         "config_files/VGG16_config.json",
     ]:
         with open(config_file, "r") as f:
