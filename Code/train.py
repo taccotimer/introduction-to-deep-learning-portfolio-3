@@ -29,7 +29,7 @@ def main():
         device = torch.device("cpu")
     print(f"Training executing on device: {device}")
 
-    train_loader, val_loader, _ = get_loaders(
+    train_loader, val_loader, _, num_classes, channels = get_loaders(
         data=config["DATA"],
         data_path=config["DATA_PATH"],
         batch_size=config["BATCH_SIZE"],
@@ -37,8 +37,8 @@ def main():
 
     model_class = getattr(models, config["MODEL"])
     model = model_class(
-        in_channels=config["CHANNELS"],
-        num_classes=config["NUM_CLASSES"],
+        in_channels=channels,
+        num_classes=num_classes,
         drop_rate=config["DROP_RATE"],
         activation_str=config["ACTIVATION"],
     ).to(device)

@@ -3,9 +3,11 @@ MAI/IDL SS26 - Final assignment.
 
 MG 6/6/2026
 """
-import torch
 from pathlib import Path
-from torch.utils.data import TensorDataset, DataLoader
+
+import torch
+from torch.utils.data import DataLoader, TensorDataset
+
 
 def get_loaders(data, data_path, batch_size, val_split=0.1):
     d_path = Path(data_path) / f"{data}.pt"
@@ -28,4 +30,4 @@ def get_loaders(data, data_path, batch_size, val_split=0.1):
     val_loader = DataLoader(dataset=val_dataset, batch_size=batch_size, shuffle=False)
     test_loader = DataLoader(dataset=test_dataset, batch_size=batch_size, shuffle=False)
     
-    return train_loader, val_loader, test_loader
+    return train_loader, val_loader, test_loader, len(torch.unique(train_labels)), train_data[0].shape[0]
