@@ -40,7 +40,7 @@ def main():
         in_channels=config["CHANNELS"],
         num_classes=config["NUM_CLASSES"],
         drop_rate=config["DROP_RATE"],
-        activation_str=None,
+        activation_str=config["ACTIVATION"],
     ).to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=config["LEARNING_RATE"])
