@@ -15,9 +15,11 @@ from fit import Trainer
 from data import get_loaders
 
 
-def main():
-    with open("config.json", "r") as f:
-        config = json.load(f)
+def main(config):
+    if config is None:
+        print("No config provided, loading default config.json")
+        with open("config.json", "r") as f:
+            config = json.load(f)
 
     if torch.cuda.is_available():
         device = torch.device("cuda")
@@ -48,6 +50,10 @@ def main():
     trainer = Trainer(model, criterion, optimizer, device)
     trainer.fit(train_loader, val_loader, epochs=config["EPOCHS"])
 
+    torch.save(
+        trainer.best_model_state, f"{config['MODEL']}_{config['DATASET']}_best.pth"
+    )
+
 
 if __name__ == "__main__":
-    main()
+    main(None)
