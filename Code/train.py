@@ -50,9 +50,7 @@ def main(config):
     trainer = Trainer(model, criterion, optimizer, device)
     trainer.fit(train_loader, val_loader, epochs=config["EPOCHS"])
 
-    torch.save(
-        trainer.best_model_state, f"{config['MODEL']}_{config['DATASET']}_best.pth"
-    )
+    torch.save(trainer.best_model_state, f"{config['MODEL']}_{config['DATA']}_best.pth")
 
 
 if __name__ == "__main__":

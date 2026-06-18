@@ -59,7 +59,6 @@ def test_models():
                 "recall": recall * 100,
                 "f1_score": f1 * 100,
             }
-            # Print Summary Table
 
     print("\n" + "=" * 110)
     print("SUMMARY TABLE: Model Performance Across All Datasets")
