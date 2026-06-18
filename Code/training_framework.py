@@ -12,7 +12,7 @@ def train_main_runs():
         with open(config_file, "r") as f:
             array_configs = json.load(f)
         for config in array_configs:
-            print(f"Testing with config: {config_file}")
+            print(f"Training with config: {config_file}")
             main(config)
 
 

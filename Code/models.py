@@ -89,9 +89,10 @@ class AlexNet(nn.Module):
 
         num_classes = kwargs.get("num_classes", 11)
         drop_rate = kwargs.get("drop_rate", 0.5)
+        in_channels = kwargs.get("in_channels", 3)
 
         self.features = nn.Sequential(
-            nn.Conv2d(3, 48, kernel_size=7, stride=2, padding=3),
+            nn.Conv2d(in_channels, 48, kernel_size=7, stride=2, padding=3),
             nn.BatchNorm2d(48),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=3, stride=2, padding=1),
