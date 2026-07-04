@@ -1,27 +1,97 @@
-# MAI - IDL 2026 — Final Project Assignment
+# IDL Final Project – Medical Image Classification
 
-Welcome to the official repository template for the **Introduction to Deep Learning (IDL) 2026 Final Assignment**.
+**Name(s):** Josian Müller, Tim Elflein
+**Enrollment number(s):** 10013466 , 10013032
 
-### Overview
+## What does this project do?
 
-This repository contains the volatile, recovered remnants of a broken machine learning pipeline. Your mission is to audit the codebase, stabilize the system, optimize its computational footprint, and successfully deploy models across all target datasets.
+We train and test several neural networks (AlexNet, VGG16, ResNet18, and
+smaller variant of AlexNet) on medical image datasets and compare their
+accuracy, speed, and memory usage.
 
-* **Code:** All core source files can be found inside the `Code/` directory.
-* **Instructions:** Background story and tasks are detailed in **`assignment_final.pdf`**.
-* **Data:** Available for download here: https://cloud.fiw.fhws.de/s/LpYa2dCW85kwdNn
+## Folder structure
 
----
+```
+Code/
+  main.py                 Runs training + testing for all configured models
+  train.py                Trains a single model (based on a config)
+  fit.py                  Training loop (Trainer class)
+  models.py               All model architectures
+  data.py                 Loads the data and builds the DataLoaders
+  training_framework.py   Runs training for several configs in a row
+  testing_framework.py    Tests trained models, builds the results table
+config_files/              One JSON file per model/dataset (hyperparameters)
+data/                       Datasets (.pt files, see below)
+*_best.pth                  Saved, best weights after training for each model
+AUDIT_LOG.md                List of found and fixed bugs
+REPORT.md                   Results and evaluation
+```
 
-### Submission Guidelines
+## Requirements
 
-* **Platform:** Submit your final deliverables via the official **e-learning platform**.
-* **Format:** Your submission must consist of a **direct link** to your created repository.
-* **Branch:** Ensure all your final, production-ready code, your `AUDIT_LOG.md`, and your `REPORT.md` are completely merged into the **`main`** branch before the cutoff.
-* **Deadline:** 09.07.2026, 23:59 (German Time). *Late submissions will not be processed.*
+- Python 3.10 or newer
+- pip
+- Optional: NVIDIA GPU with CUDA (training also works on CPU, just slower, memory usage only available with CUDA)
 
----
+## Installation
 
-### Repository README
+```bash
+# 1. Clone the repository
+git clone <repo-url>
+cd introduction-to-deep-learning-portfolio-3
 
-* **Professional Documentation:** Remember to update this `README` with a professional documentation of your repo.
-* **Author(s):** Indicate your name(s) and enrollment number(s) clearly in the top of the readme.
+# 2. Create and activate a virtual environment (Windows)
+python -m venv venv
+venv\Scripts\activate
+
+# 3. Install dependencies
+pip install -r requirements.txt
+```
+
+By default, `pip install -r requirements.txt` installs the **CPU-only** build
+of torch. If you have an NVIDIA GPU and want to train on it, install the
+CUDA build of torch instead (example for CUDA 11.8):
+
+```bash
+pip install torch==2.7.1 --index-url https://download.pytorch.org/whl/cu118
+```
+
+## Download the data
+
+Download the datasets here: https://cloud.fiw.fhws.de/s/LpYa2dCW85kwdNn
+
+Place the downloaded `.pt` files in the `data/` folder.
+
+## Start training
+
+```bash
+cd Code
+python training_framework.py
+```
+
+Which models/datasets get trained is set in `training_framework.py` in the
+`config_files` list. Each config file lives in `config_files/`.
+
+## Testing
+
+```bash
+cd Code
+python testing_framework.py
+```
+
+This loads the saved `*_best.pth` files and prints a results table
+(accuracy, precision, recall, F1-score, inference time and peak memory usage). <br>
+In fit.py in the fit method you can set the parameters for early stopping. For the experiments and basic Training that feature was disabled.
+
+## Training + testing together
+
+```bash
+cd Code
+python main.py
+```
+
+## Logging
+
+Logs of training and testing are save in separate log files:
+- fit.log / log of the training runs
+- test.log / log of the testing runs
