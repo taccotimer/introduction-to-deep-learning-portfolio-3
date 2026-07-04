@@ -7,15 +7,17 @@ from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_sc
 
 from data import get_loaders
 
+"""
+Test all models on all datasets and compute comprehensive metrics.
+Saves results to a summary table with accuracy, precision, recall, and F1-score.
+"""
 
-def test_models():
-    """
-    Test all models on all datasets and compute comprehensive metrics.
-    Saves results to a summary table with accuracy, precision, recall, and F1-score.
-    """
-    datapath = "./data"
-    datasets = ["cells", "chest", "lesions", "orgs"]
-    models_list = ["AlexNet", "VGG16", "ResNet18"]
+
+def test_models(
+    datapath="./data",
+    datasets=["cells", "chest", "lesions", "orgs"],
+    models_list=["AlexNet", "VGG16", "ResNet18"],
+):
 
     results = defaultdict(dict)
 
