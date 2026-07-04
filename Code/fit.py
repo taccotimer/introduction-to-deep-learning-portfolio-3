@@ -9,6 +9,8 @@ import copy
 import torch
 import time
 
+import logging
+
 class Trainer:
     def __init__(self, model, criterion, optimizer, device):
         self.model = model
@@ -16,6 +18,17 @@ class Trainer:
         self.optimizer = optimizer
         self.device = device
         self.best_model_state = None
+        self.logger = logging.getLogger(__name__)
+        self.logger.setLevel(logging.DEBUG)
+        self.file_handler = logging.FileHandler('fit.log')
+        self.console_handler = logging.StreamHandler()
+
+        self.formatter = logging.Formatter('%(asctime)s - %(message)s')
+        self.file_handler.setFormatter(self.formatter)
+        self.console_handler.setFormatter(self.formatter)
+
+        self.logger.addHandler(self.file_handler)
+        self.logger.addHandler(self.console_handler)
 
     def train_one_epoch(self, dataloader):
         self.model.train()
@@ -60,8 +73,8 @@ class Trainer:
         return running_loss / total, (correct / total) * 100
 
     def fit(self, train_loader, val_loader, epochs, patience = 100, delta_improvement = 0.005):
-        print("\n Starting Training Routine...")
-        print("-" * 50)
+        self.logger.info("\n Starting Training Routine...")
+        self.logger.info("-" * 50)
         best_val_loss = float('inf')
         last_improvement = 0
         if self.device.type == "cuda":
@@ -73,7 +86,7 @@ class Trainer:
             train_loss, train_acc = self.train_one_epoch(train_loader)
             val_loss, val_acc = self.evaluate(val_loader)
 
-            print(
+            self.logger.info(
                 f"Epoch [{epoch+1:02d}/{epochs:02d}] | "
                 f"Train Loss: {train_loss:.4f} - Train Acc: {train_acc:.2f}% | "
                 f"Val Loss: {val_loss:.4f} - Val Acc: {val_acc:.2f}%"
@@ -85,16 +98,22 @@ class Trainer:
             else:
                 last_improvement +=1
             if last_improvement > patience:
-                print("-" * 50)
-                print("Training Complete! - Early Stopping")
+                self.logger.info("-" * 50)
+                self.logger.info("Training Complete! - Early Stopping")
                 break
 
-        print("-" * 50)
-        print("Training Complete!")
+        self.logger.info("-" * 50)
+        self.logger.info("Training Complete!")
         if self.device.type == "cuda":
             torch.cuda.synchronize()
         end_training_time = time.perf_counter()
-        print(f"Total Training Time: {end_training_time - start_training_time:.2f} seconds")
+        self.logger.info(f"Total Training Time: {end_training_time - start_training_time:.2f} seconds")
         if self.device.type == "cuda":
             peak_memory_mb = torch.cuda.max_memory_allocated(self.device) / (1024 ** 2)
-            print(f"Peak GPU Memory (allocated): {peak_memory_mb:.2f} MB")
+            self.logger.info(f"Peak GPU Memory (allocated): {peak_memory_mb:.2f} MB")
+
+        for handler in self.logger.handlers[:]:
+            handler.close()               
+            self.logger.removeHandler(handler)
+
+            print("Logger successfully closed and file released.")

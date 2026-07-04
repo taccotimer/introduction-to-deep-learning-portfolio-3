@@ -11,7 +11,6 @@ def train_main_runs(
         # "config_files/VGG16_config.json",
         # "config_files/Transfer_Learning_Organs_config.json",
         # "config_files/Organs_config.json",
-        # "config_files/SlimResNet18_config.json"
     ]
 ):
 

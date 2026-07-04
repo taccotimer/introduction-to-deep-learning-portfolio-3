@@ -1,3 +1,5 @@
+import logging
+import time
 from collections import defaultdict
 
 import models
@@ -6,7 +8,6 @@ import torch
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 
 from data import get_loaders
-import time
 
 """
 Test all models on all datasets and compute comprehensive metrics.
@@ -26,6 +27,18 @@ def test_models(
     ],
     models_list=[ "SlimAlexNet"],
 ):
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.DEBUG)
+
+    file_handler = logging.FileHandler('test.log')
+    console_handler = logging.StreamHandler()
+
+    formatter = logging.Formatter('%(asctime)s - %(message)s')
+    file_handler.setFormatter(formatter)
+    console_handler.setFormatter(formatter)
+
+    logger.addHandler(file_handler)
+    logger.addHandler(console_handler)
 
     results = defaultdict(lambda: defaultdict(dict))
 
@@ -56,7 +69,7 @@ def test_models(
                     map_location="cpu",
                 )
             except FileNotFoundError:
-                print(f"File not found: {name}")
+                logger.info(f"File not found: {name}")
                 continue
 
             test_model.load_state_dict(state_dict)
@@ -103,9 +116,9 @@ def test_models(
             avg_time_per_sample_sec = total_inference_time / total_samples
             avg_time_per_sample_ms = avg_time_per_sample_sec * 1000
 
-            print(f"{model_name}: inference time per sample: {avg_time_per_sample_ms:.4f} ms")
+            logger.info(f"{model_name}: inference time per sample: {avg_time_per_sample_ms:.4f} ms")
             if device.type == 'cuda':
-                print(f"Peak memory consumption: {peak_mem_mb:.2f} MB [{mem_type}]")
+                logger.info(f"Peak memory consumption: {peak_mem_mb:.2f} MB [{mem_type}]")
 
             all_predictions = np.array(all_predictions)
             all_labels = np.array(all_labels)
@@ -128,9 +141,9 @@ def test_models(
                 "f1_score": f1 * 100,
             }
 
-    print("\n" + "=" * 110)
-    print("SUMMARY TABLE: Model Performance Across All Datasets")
-    print("=" * 110)
+    logger.info("\n" + "=" * 110)
+    logger.info("SUMMARY TABLE: Model Performance Across All Datasets")
+    logger.info("=" * 110)
 
     expected_min_acc = {
         "cells": 90.0,
@@ -143,26 +156,31 @@ def test_models(
     for dataset in datasets:
         dataset_name = dataset["name"]
         use_transfer_learning = dataset.get("use_transfer_learning", False)
-        print(
+        logger.info(
             f"\n{dataset_name.upper()} {'with Transfer Learning' if use_transfer_learning else ''} (Expected min accuracy: {expected_min_acc[dataset_name]}%):"
         )
-        print(
+        logger.info(
             "| Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |"
         )
-        print(f"|{'-'*12}|{'-'*15}|{'-'*16}|{'-'*13}|{'-'*15}|{'-'*20}|")
+        logger.info(f"|{'-'*12}|{'-'*15}|{'-'*16}|{'-'*13}|{'-'*15}|{'-'*20}|")
 
         for model_name in models_list:
             metrics = results[dataset_name][model_name][
                 "use_transfer_learning" if use_transfer_learning else ""
             ]
             meets_exp = (
-                "✓ Yes"
+                "Yes"
                 if metrics["accuracy"] >= expected_min_acc[dataset_name]
-                else "✗ No"
+                else "No"
             )
-            print(
+            logger.info(
                 f"| {model_name} | {metrics['accuracy']:.2f} | {metrics['precision']:.2f} | {metrics['recall']:.2f} | {metrics['f1_score']:.2f} | {meets_exp} |"
             )
+    for handler in logger.handlers[:]:
+        handler.close()               
+        logger.removeHandler(handler)
+
+    print("Logger successfully closed and file released.")
 
 
 if __name__ == "__main__":
