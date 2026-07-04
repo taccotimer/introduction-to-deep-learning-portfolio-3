@@ -80,7 +80,8 @@ python testing_framework.py
 ```
 
 This loads the saved `*_best.pth` files and prints a results table
-(accuracy, precision, recall, F1-score, inference time and peak memory usage).
+(accuracy, precision, recall, F1-score, inference time and peak memory usage). <br>
+In fit.py in the fit method you can set the parameters for early stopping. For the experiments and basic Training that feature was disabled.
 
 ## Training + testing together
 
