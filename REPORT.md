@@ -39,6 +39,6 @@
 | Dataset | Recommendation | Rationale |
 |---------|-----------------|-----------|
 | Cells   | ResNet18 | Best across all 4 metrics |
-| Chest   | VGG16    | Best accuracy & F1 |
+| Chest   | VGG16    | Best across all 4 metrics |
 | Lesions | ResNet18 | Best across all 4 metrics |
 | Organs  | ResNet18 | Best across all 4 metrics |
