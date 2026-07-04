@@ -8,7 +8,8 @@ if __name__ == "__main__":
             "config_files/ResNet18_config.json",
             "config_files/VGG16_config.json",
             "Transfer_Learning_Organs_config.json",
-            "Organs_config.json"
+            "Organs_config.json",
+            "SlimAlexNet_config.json",
         ]
     )
 
@@ -22,5 +23,5 @@ if __name__ == "__main__":
         {"name": "organs", "use_transfer_learning": True},
         {"name": "organs", "use_transfer_learning": False},
         ],
-        models_list=["AlexNet", "VGG16", "ResNet18"],
+        models_list=["AlexNet", "VGG16", "ResNet18", "SlimAlexNet"],
     )

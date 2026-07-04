@@ -80,7 +80,7 @@ python testing_framework.py
 ```
 
 This loads the saved `*_best.pth` files and prints a results table
-(accuracy, precision, recall, F1-score).
+(accuracy, precision, recall, F1-score, inference time and peak memory usage).
 
 ## Training + testing together
 
@@ -88,3 +88,9 @@ This loads the saved `*_best.pth` files and prints a results table
 cd Code
 python main.py
 ```
+
+## Logging
+
+Logs of training and testing are save in separate log files:
+- fit.log / log of the training runs
+- test.log / log of the testing runs
