@@ -27,6 +27,10 @@ def test_models(
     ],
     models_list=[ "AlexNet", "VGG16", "ResNet18", "SlimAlexNet"],
 ):
+    torch.manual_seed(42)
+    torch.cuda.manual_seed(42)
+    np.random.seed(42)
+
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
 

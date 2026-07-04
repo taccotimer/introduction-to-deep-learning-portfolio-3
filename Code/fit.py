@@ -73,6 +73,9 @@ class Trainer:
         return running_loss / total, (correct / total) * 100
 
     def fit(self, train_loader, val_loader, epochs, patience = 100, delta_improvement = 0.005):
+        torch.manual_seed(42)
+        torch.cuda.manual_seed(42)
+
         self.logger.info("\n Starting Training Routine...")
         self.logger.info("-" * 50)
         best_val_loss = float('inf')

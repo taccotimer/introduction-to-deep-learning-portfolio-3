@@ -16,6 +16,9 @@ from data import get_loaders
 
 
 def main(config):
+    torch.manual_seed(42)
+    torch.cuda.manual_seed(42)
+    
     if config is None:
         print("No config provided, loading default config.json")
         with open("config.json", "r") as f:

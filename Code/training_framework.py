@@ -13,7 +13,7 @@ def train_main_runs(
         "config_files/Organs_config.json",
     ]
 ):
-
+    
     for config_file in config_files:
         with open(config_file, "r") as f:
             array_configs = json.load(f)
