@@ -4,8 +4,10 @@ MAI/IDL SS26 - Final assignment.
 MG 6/6/2026
 """
 
-import torch
+import copy
 
+import torch
+import time
 
 class Trainer:
     def __init__(self, model, criterion, optimizer, device):
@@ -57,11 +59,16 @@ class Trainer:
 
         return running_loss / total, (correct / total) * 100
 
-    def fit(self, train_loader, val_loader, epochs, patience = 10, delta_improvement = 0.01):
+    def fit(self, train_loader, val_loader, epochs, patience = 100, delta_improvement = 0.005):
         print("\n Starting Training Routine...")
         print("-" * 50)
         best_val_loss = float('inf')
         last_improvement = 0
+        if self.device.type == "cuda":
+            torch.cuda.synchronize()
+        start_training_time = time.perf_counter()
+        if self.device.type == "cuda":
+            torch.cuda.reset_peak_memory_stats(self.device)
         for epoch in range(epochs):
             train_loss, train_acc = self.train_one_epoch(train_loader)
             val_loss, val_acc = self.evaluate(val_loader)
@@ -71,9 +78,9 @@ class Trainer:
                 f"Train Loss: {train_loss:.4f} - Train Acc: {train_acc:.2f}% | "
                 f"Val Loss: {val_loss:.4f} - Val Acc: {val_acc:.2f}%"
             )
-            if val_loss - best_val_loss < delta_improvement:
+            if val_loss < (best_val_loss - delta_improvement):
                 best_val_loss = val_loss
-                self.best_model_state = self.model.state_dict()
+                self.best_model_state = copy.deepcopy(self.model.state_dict())
                 last_improvement = 0
             else:
                 last_improvement +=1
@@ -84,3 +91,10 @@ class Trainer:
 
         print("-" * 50)
         print("Training Complete!")
+        if self.device.type == "cuda":
+            torch.cuda.synchronize()
+        end_training_time = time.perf_counter()
+        print(f"Total Training Time: {end_training_time - start_training_time:.2f} seconds")
+        if self.device.type == "cuda":
+            peak_memory_mb = torch.cuda.max_memory_allocated(self.device) / (1024 ** 2)
+            print(f"Peak GPU Memory (allocated): {peak_memory_mb:.2f} MB")

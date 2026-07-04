@@ -6,6 +6,7 @@ import torch
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 
 from data import get_loaders
+import time
 
 """
 Test all models on all datasets and compute comprehensive metrics.
@@ -20,10 +21,10 @@ def test_models(
         {"name": "chest"},
         {"name": "lesions"},
         {"name": "orgs"},
-        {"name": "organs", "use_transfer_learning": True},
-        {"name": "organs", "use_transfer_learning": False},
+        #{"name": "organs", "use_transfer_learning": True},
+        #{"name": "organs", "use_transfer_learning": False},
     ],
-    models_list=["AlexNet", "VGG16", "ResNet18"],
+    models_list=[ "SlimAlexNet"],
 ):
 
     results = defaultdict(lambda: defaultdict(dict))
@@ -65,13 +66,46 @@ def test_models(
             device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
             test_model.to(device)
 
+            if device.type == 'cuda':
+                torch.cuda.reset_peak_memory_stats(device)
+
+            total_inference_time = 0.0
+            total_samples = 0
             with torch.no_grad():
                 for images, labels in test_loader:
                     images, labels = images.to(device), labels.to(device)
+                    #synchronize and start timer
+                    if device.type == 'cuda':
+                        torch.cuda.synchronize()
+                    start_time = time.perf_counter()
+
                     outputs = test_model(images)
+                    
+                    #synchronize and stop timer
+                    if device.type == 'cuda':
+                        torch.cuda.synchronize()
+                    end_time = time.perf_counter()
+
+                    # record time and batch size
+                    batch_time = end_time - start_time
+                    total_inference_time += batch_time
+                    total_samples += images.size(0)
+
                     _, predicted = outputs.max(1)
                     all_predictions.extend(predicted.cpu().tolist())
                     all_labels.extend(labels.cpu().tolist())
+
+            if device.type == 'cuda':
+                peak_bytes = torch.cuda.max_memory_allocated(device)
+                peak_mem_mb = peak_bytes / (1024 ** 2)
+                mem_type = "GPU (VRAM)"
+
+            avg_time_per_sample_sec = total_inference_time / total_samples
+            avg_time_per_sample_ms = avg_time_per_sample_sec * 1000
+
+            print(f"{model_name}: inference time per sample: {avg_time_per_sample_ms:.4f} ms")
+            if device.type == 'cuda':
+                print(f"Peak memory consumption: {peak_mem_mb:.2f} MB [{mem_type}]")
 
             all_predictions = np.array(all_predictions)
             all_labels = np.array(all_labels)

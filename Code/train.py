@@ -57,7 +57,7 @@ def main(config):
     optimizer = optim.Adam(model.parameters(), lr=config["LEARNING_RATE"])
 
     trainer = Trainer(model, criterion, optimizer, device)
-    trainer.fit(train_loader, val_loader, epochs=config["EPOCHS"], patience = 10)
+    trainer.fit(train_loader, val_loader, epochs=config["EPOCHS"])
 
     torch.save(
         trainer.best_model_state,

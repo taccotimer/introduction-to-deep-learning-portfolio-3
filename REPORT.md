@@ -59,7 +59,7 @@
 
 **Why transfer learning underperforms scratch training here:**
 
-1. **Extremely small dataset:** With only 500 training images across 11 classes, there is likely too little data to properly adapt a large pretrained network without either underfitting the new classes or overwriting the pretrained features entirely.
-2. **Domain gap:** The pretrained features don't align well with the new Organs data distribution (different class/image statistics), causing negative transfer. Hyperparameters (50 epochs, learning rate 0.001) were reasonable and consistent with the scratch runs, so the gap is not attributable to a training-configuration issue.
+1. **Domain gap:** The pretrained features don't align well with the new Organs data distribution (different class/image statistics), causing transfer to fail. We saw at the start of the transfer learning that the Accuracy was sub par, with the pretrained model. So there is not much similarity between the data. 
 
 **Conclusion:** All models/regimes clear the required 40% threshold comfortably; ResNet18 (Scratch) at 67.00% is currently the best-performing solution.
+**Recommendation:** An Option would be augmentation of the data, to generate more training data. However it would be even better to gather new real world data to ensure correct generalization.
