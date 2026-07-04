@@ -15,15 +15,24 @@ Saves results to a summary table with accuracy, precision, recall, and F1-score.
 
 def test_models(
     datapath="./data",
-    datasets=["cells", "chest", "lesions", "orgs"],
+    datasets=[
+        {"name": "cells"},
+        {"name": "chest"},
+        {"name": "lesions"},
+        {"name": "orgs"},
+        {"name": "organs", "use_transfer_learning": True},
+        {"name": "organs", "use_transfer_learning": False},
+    ],
     models_list=["AlexNet", "VGG16", "ResNet18"],
 ):
 
-    results = defaultdict(dict)
+    results = defaultdict(lambda: defaultdict(dict))
 
     for dataset in datasets:
+        dataset_name = dataset["name"]
+        use_transfer_learning = dataset.get("use_transfer_learning", False)
         _, _, test_loader, num_classes, channels = get_loaders(
-            data=dataset, data_path=datapath, batch_size=64
+            data=dataset_name, data_path=datapath, batch_size=64
         )
 
         for model_name in models_list:
@@ -35,11 +44,20 @@ def test_models(
                 activation_str="ReLU",
             )
 
-            state_dict = torch.load(
-                f"{model_name}_{dataset}_best.pth",
-                weights_only=False,
-                map_location="cpu",
-            )
+            if use_transfer_learning:
+                name = f"{model_name}_{dataset_name}_use_pretrained_best.pth"
+            else:
+                name = f"{model_name}_{dataset_name}_best.pth"
+
+            try:
+                state_dict = torch.load(
+                    name,
+                    map_location="cpu",
+                )
+            except FileNotFoundError:
+                print(f"File not found: {name}")
+                continue
+
             test_model.load_state_dict(state_dict)
             test_model.eval()
 
@@ -67,7 +85,9 @@ def test_models(
             )
             f1 = f1_score(all_labels, all_predictions, average="macro", zero_division=0)
 
-            results[dataset][model_name] = {
+            results[dataset_name][model_name][
+                "use_transfer_learning" if use_transfer_learning else ""
+            ] = {
                 "accuracy": accuracy * 100,
                 "precision": precision * 100,
                 "recall": recall * 100,
@@ -78,11 +98,19 @@ def test_models(
     print("SUMMARY TABLE: Model Performance Across All Datasets")
     print("=" * 110)
 
-    expected_min_acc = {"cells": 90.0, "chest": 87.0, "lesions": 67.0, "orgs": 83.0}
+    expected_min_acc = {
+        "cells": 90.0,
+        "chest": 87.0,
+        "lesions": 67.0,
+        "orgs": 83.0,
+        "organs": 40.0,
+    }
 
     for dataset in datasets:
+        dataset_name = dataset["name"]
+        use_transfer_learning = dataset.get("use_transfer_learning", False)
         print(
-            f"\n{dataset.upper()} (Expected min accuracy: {expected_min_acc[dataset]}%):"
+            f"\n{dataset_name.upper()} {'with Transfer Learning' if use_transfer_learning else ''} (Expected min accuracy: {expected_min_acc[dataset_name]}%):"
         )
         print(
             "| Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |"
@@ -90,9 +118,13 @@ def test_models(
         print(f"|{'-'*12}|{'-'*15}|{'-'*16}|{'-'*13}|{'-'*15}|{'-'*20}|")
 
         for model_name in models_list:
-            metrics = results[dataset][model_name]
+            metrics = results[dataset_name][model_name][
+                "use_transfer_learning" if use_transfer_learning else ""
+            ]
             meets_exp = (
-                "✓ Yes" if metrics["accuracy"] >= expected_min_acc[dataset] else "✗ No"
+                "✓ Yes"
+                if metrics["accuracy"] >= expected_min_acc[dataset_name]
+                else "✗ No"
             )
             print(
                 f"| {model_name} | {metrics['accuracy']:.2f} | {metrics['precision']:.2f} | {metrics['recall']:.2f} | {metrics['f1_score']:.2f} | {meets_exp} |"

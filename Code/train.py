@@ -44,13 +44,25 @@ def main(config):
         drop_rate=config["DROP_RATE"],
         activation_str=config["ACTIVATION"],
     ).to(device)
+    use_pretrained = config.get("TRANSFER_LEARNING", False)
+    if use_pretrained:
+        pretrained_path = config.get("PRETRAINED_MODEL_PATH", "")
+        if pretrained_path:
+            model.load_state_dict(torch.load(pretrained_path, map_location=device))
+        else:
+            print(
+                "Warning: TRANSFER_LEARNING is True, but no PRETRAINED_MODEL_PATH was provided."
+            )
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=config["LEARNING_RATE"])
 
     trainer = Trainer(model, criterion, optimizer, device)
-    trainer.fit(train_loader, val_loader, epochs=config["EPOCHS"])
+    trainer.fit(train_loader, val_loader, epochs=config["EPOCHS"], patience = 10)
 
-    torch.save(trainer.best_model_state, f"{config['MODEL']}_{config['DATA']}_best.pth")
+    torch.save(
+        trainer.best_model_state,
+        f"{config['MODEL']}_{config['DATA']}{('_use_pretrained' if use_pretrained else '')}_best.pth",
+    )
 
 
 if __name__ == "__main__":

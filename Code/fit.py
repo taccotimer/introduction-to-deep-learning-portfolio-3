@@ -57,10 +57,11 @@ class Trainer:
 
         return running_loss / total, (correct / total) * 100
 
-    def fit(self, train_loader, val_loader, epochs):
+    def fit(self, train_loader, val_loader, epochs, patience = 10, delta_improvement = 0.01):
         print("\n Starting Training Routine...")
         print("-" * 50)
-        best_val_acc = 0.0
+        best_val_loss = float('inf')
+        last_improvement = 0
         for epoch in range(epochs):
             train_loss, train_acc = self.train_one_epoch(train_loader)
             val_loss, val_acc = self.evaluate(val_loader)
@@ -70,9 +71,16 @@ class Trainer:
                 f"Train Loss: {train_loss:.4f} - Train Acc: {train_acc:.2f}% | "
                 f"Val Loss: {val_loss:.4f} - Val Acc: {val_acc:.2f}%"
             )
-            if val_acc > best_val_acc:
-                best_val_acc = val_acc
+            if val_loss - best_val_loss < delta_improvement:
+                best_val_loss = val_loss
                 self.best_model_state = self.model.state_dict()
+                last_improvement = 0
+            else:
+                last_improvement +=1
+            if last_improvement > patience:
+                print("-" * 50)
+                print("Training Complete! - Early Stopping")
+                break
 
         print("-" * 50)
         print("Training Complete!")

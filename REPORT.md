@@ -26,7 +26,7 @@
 | VGG16    | 71.22 | 48.85 | 47.63 | 46.30 | ✓ Yes |
 | ResNet18 | 75.61 | 60.25 | 53.06 | 54.86 | ✓ Yes |
 
-### ORGANS (min. accuracy: 83.0%)
+### ORGS (min. accuracy: 83.0%)
 
 | Model    | Accuracy (%) | Precision (%) | Recall (%) | Macro F1-Score (%) | Meets Expectation |
 |----------|-------------:|--------------:|-----------:|-------------:|:------------------:|
@@ -41,4 +41,25 @@
 | Cells   | ResNet18 | Best across all 4 metrics |
 | Chest   | VGG16    | Best across all 4 metrics |
 | Lesions | ResNet18 | Best across all 4 metrics |
-| Organs  | ResNet18 | Best across all 4 metrics |
+| Orgs  | ResNet18 | Best across all 4 metrics |
+
+
+## Data-Scarcity Post-Mortem: Organs (Low-Sample)
+
+**Expected min. accuracy: 40.0%**
+
+| Model    | Regime            | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |
+|----------|--------------------|-------------:|--------------:|-----------:|-------------:|:------------------:|
+| AlexNet  | Scratch            | 62.00 | 60.55 | 60.86 | 59.59 | ✓ Yes |
+| AlexNet  | Transfer Learning  | 55.50 | 54.33 | 49.53 | 48.93 | ✓ Yes |
+| VGG16    | Scratch            | 61.00 | 61.27 | 58.89 | 57.53 | ✓ Yes |
+| VGG16    | Transfer Learning  | 57.50 | 50.96 | 49.20 | 49.00 | ✓ Yes |
+| ResNet18 | Scratch            | 67.00 | 63.66 | 62.44 | 61.47 | ✓ Yes |
+| ResNet18 | Transfer Learning  | 60.00 | 56.64 | 52.83 | 52.44 | ✓ Yes |
+
+**Why transfer learning underperforms scratch training here:**
+
+1. **Extremely small dataset:** With only 500 training images across 11 classes, there is likely too little data to properly adapt a large pretrained network without either underfitting the new classes or overwriting the pretrained features entirely.
+2. **Domain gap:** The pretrained features don't align well with the new Organs data distribution (different class/image statistics), causing negative transfer. Hyperparameters (50 epochs, learning rate 0.001) were reasonable and consistent with the scratch runs, so the gap is not attributable to a training-configuration issue.
+
+**Conclusion:** All models/regimes clear the required 40% threshold comfortably; ResNet18 (Scratch) at 67.00% is currently the best-performing solution.
