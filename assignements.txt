@@ -1,0 +1,70 @@
+Complete Corrected Codebase: Fully functional, production-grade version of the en-
+tire repository, including data.py, models.py, train.py, and trainer.py, alongside your
+newly engineered configuration and testing frameworks. The codebase must be modular,
+error-free, compatible with all four target datasets, and capable of executing training and
+predictions for all three models via native Python calls driven by the developed configu-
+ration structure
+
+DONE
+
+Professional Repository Documentation (README.md): Clean, comprehensive mark-
+down file in the root of your main branch detailing the content, structural layout, prereq-
+uisites, and explicit commands required to install dependencies and execute the train and
+test pipeline
+
+?
+
+Incident Audit Log: A technical table (submitted as AUDIT LOG.md) itemizing every
+bug, corruption, or anti-pattern discovered within the recovered code. For each entry, you 1
+must explicitly document: (i) the file name, (ii) how the problem manifests, (iii) the math-
+ematical or logical root cause of the failure, (iv) the structural correction implemented,
+and (v) the exact git commit hash containing the fix
+
+in progress
+
+Consolidated Benchmark Report: A brief evaluation report (submitted as REPORT.md
+or REPORT.pdf in your repository root) comparing the final performance of the corrected
+models across all configuration permutations. This must include a clean summary table
+capturing key metrics (accuracy, precision, recall, and macro F1-score) along with ar-
+chitectural recommendations for optimal dataset/model pairings based on your observed
+benchmarks. Expected minimal accuracy performance on test data: cells: 90%, chest:
+87%, lesions: 67%, orgs: 83%.
+
+in progress
+
+Architectural Downscaling: Come up with an architecture with reduced complexity
+to minimize runtime and memory usage while maintaining performance.
+
+in progress
+
+Efficiency Verification Matrix: Expand your automated orchestration runner to profile
+and log the resource consumption of each model. For every dataset-model permutation,
+your tracking metrics must now include: (i) total training runtime duration, (ii) inference
+latency per sample, and (iii) peak memory consumption during training and inference
+phases.
+
+in progress
+
+Green Initiative Analysis: Include a dedicated section in your final report (REPORT.md)
+evaluating the trade-offs between model complexity and performance. You must quantita-
+tively prove that your streamlined, green-optimized model achieves comparable accuracy
+to the original configurations while operating at a fraction of the computational cost.
+
+in progress
+
+Knowledge Transfer Adaptation: Adapt your pipeline to utilize a data-efficient train-
+ing regime. Determine how to exploit structural features learned from your larger, existing
+image profiles to maximize performance on the new, limited organs data.
+
+in progress
+
+Scarce-Data Benchmark Matrix: Expand your automated runner to track and log
+the performance behavior of this new data under different training states (e.g., training
+from completely scratch vs. leveraging transferred feature knowledge).
+
+in progress
+
+Data-Scarcity Post-Mortem: Dedicated analysis in the final report (REPORT.md) an-
+alyzing quantitatively the impact of the innovative approaches, comparison to standard
+baseline training and expert summary and recommendations. The chief hopes for at least
+40% accuracy on the test set.
