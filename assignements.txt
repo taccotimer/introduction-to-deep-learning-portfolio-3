@@ -30,7 +30,7 @@ chitectural recommendations for optimal dataset/model pairings based on your obs
 benchmarks. Expected minimal accuracy performance on test data: cells: 90%, chest:
 87%, lesions: 67%, orgs: 83%.
 
-in progress
+DONE
 
 Architectural Downscaling: Come up with an architecture with reduced complexity
 to minimize runtime and memory usage while maintaining performance.
