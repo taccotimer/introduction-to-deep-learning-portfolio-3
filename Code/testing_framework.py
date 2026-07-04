@@ -22,10 +22,10 @@ def test_models(
         {"name": "chest"},
         {"name": "lesions"},
         {"name": "orgs"},
-        #{"name": "organs", "use_transfer_learning": True},
-        #{"name": "organs", "use_transfer_learning": False},
+        {"name": "organs", "use_transfer_learning": True},
+        {"name": "organs", "use_transfer_learning": False},
     ],
-    models_list=[ "SlimAlexNet"],
+    models_list=[ "AlexNet", "VGG16", "ResNet18", "SlimAlexNet"],
 ):
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
