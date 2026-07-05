@@ -20,9 +20,9 @@ Code/
   data.py                 Loads the data and builds the DataLoaders
   training_framework.py   Runs training for several configs in a row
   testing_framework.py    Tests trained models, builds the results table
-config_files/              One JSON file per model/dataset (hyperparameters)
+config_files/              Two json files `config.json' and `testing_config.json' where models and datasets are configured
 data/                       Datasets (.pt files, see below)
-*_best.pth                  Saved, best weights after training for each model
+*_best.pth                  Saved, best weights after training for each model, the models with use_pretrained are models which used transfer leaning
 AUDIT_LOG.md                List of found and fixed bugs
 REPORT.md                   Results and evaluation
 ```
@@ -95,3 +95,70 @@ python main.py
 Logs of training and testing are save in separate log files:
 - fit.log / log of the training runs
 - test.log / log of the testing runs
+
+# Configuration Files
+ 
+This repo uses two JSON config files: one for **training** and one for **testing**.
+ 
+## `config.json` — training runs
+ 
+An **array of run objects**. Each object is one training run, and every run in the list is executed in order. Fields:
+ 
+| Key | Type | Description |
+|-----|------|-------------|
+| `DATA` | string | Dataset name (e.g. `cells`, `chest`, `lesions`, `orgs`, `organs`). |
+| `DATA_PATH` | string | Root directory where datasets live (e.g. `./data`). |
+| `BATCH_SIZE` | int | Mini-batch size. |
+| `MODEL` | string | Architecture to train (`AlexNet`, `VGG16`, `ResNet18`). |
+| `ACTIVATION` | string | Activation function (e.g. `ReLU`). |
+| `LEARNING_RATE` | float | Optimizer learning rate. |
+| `DROP_RATE` | float | Dropout probability. |
+| `EPOCHS` | int | Number of training epochs. |
+ 
+### Optional keys (transfer learning)
+ 
+| Key | Type | Description |
+|-----|------|-------------|
+| `TRANSFER_LEARNING` | bool | If `true`, initialize from pretrained weights instead of training from scratch. |
+| `PRETRAINED_MODEL_PATH` | string | Path to the checkpoint to load. **Required when `TRANSFER_LEARNING` is `true`.** |
+ 
+### Example
+ 
+```json
+{
+  "DATA": "organs",
+  "DATA_PATH": "./data",
+  "BATCH_SIZE": 64,
+  "MODEL": "AlexNet",
+  "ACTIVATION": "ReLU",
+  "LEARNING_RATE": 0.0001,
+  "DROP_RATE": 0.3,
+  "EPOCHS": 50,
+  "TRANSFER_LEARNING": true,
+  "PRETRAINED_MODEL_PATH": "./AlexNet_orgs_best.pth"
+}
+```
+ 
+## `testing_config.json` — evaluation
+ 
+A **single object** describing which trained models to evaluate and on which datasets. Fields:
+ 
+| Key | Type | Description |
+|-----|------|-------------|
+| `datapath` | string | Root directory for the test data. |
+| `models_list` | string[] | Architectures to evaluate. |
+| `datasets` | object[] | Datasets to test on. Each has a `name`, plus an optional `use_transfer_learning` flag to select the transfer-learned vs. from-scratch checkpoint. |
+ 
+### Example
+ 
+```json
+{
+  "datapath": "data/",
+  "models_list": ["AlexNet", "VGG16", "ResNet18", "SlimAlexNet"],
+  "datasets": [
+    {"name": "cells"},
+    {"name": "organs", "use_transfer_learning": true},
+    {"name": "organs", "use_transfer_learning": false}
+  ]
+}
+```

@@ -1,0 +1,30 @@
+[{
+  "DATA": "organs",
+  "DATA_PATH": "./data",
+  "BATCH_SIZE": 64,
+  "MODEL": "AlexNet",
+  "ACTIVATION": "ReLU",
+  "LEARNING_RATE": 0.001,
+  "DROP_RATE": 0.3,
+  "EPOCHS": 100
+},
+{
+  "DATA": "organs",
+  "DATA_PATH": "./data",
+  "BATCH_SIZE": 64,
+  "MODEL": "VGG16",
+  "ACTIVATION": "ReLU",
+  "LEARNING_RATE": 0.001,
+  "DROP_RATE": 0.3,
+  "EPOCHS": 100
+},
+{
+  "DATA": "organs",
+  "DATA_PATH": "./data",
+  "BATCH_SIZE": 64,
+  "MODEL": "ResNet18",
+  "ACTIVATION": "ReLU",
+  "LEARNING_RATE": 0.001,
+  "DROP_RATE": 0.3,
+  "EPOCHS": 100
+}]

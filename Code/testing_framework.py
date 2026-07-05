@@ -8,6 +8,7 @@ import torch
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 
 from data import get_loaders
+import json
 
 """
 Test all models on all datasets and compute comprehensive metrics.
@@ -16,16 +17,7 @@ Saves results to a summary table with accuracy, precision, recall, and F1-score.
 
 
 def test_models(
-    datapath="./data",
-    datasets=[
-        {"name": "cells"},
-        {"name": "chest"},
-        {"name": "lesions"},
-        {"name": "orgs"},
-        {"name": "organs", "use_transfer_learning": True},
-        {"name": "organs", "use_transfer_learning": False},
-    ],
-    models_list=[ "AlexNet", "VGG16", "ResNet18", "SlimAlexNet"],
+    config_file="config_files/testing_config.json"
 ):
     torch.manual_seed(42)
     torch.cuda.manual_seed(42)
@@ -45,6 +37,13 @@ def test_models(
     logger.addHandler(console_handler)
 
     results = defaultdict(lambda: defaultdict(dict))
+
+    with open(config_file, "r") as f:
+        config = json.load(f)
+        
+        datasets = config["datasets"]
+        models_list = config["models_list"]
+        datapath = config["datapath"]
 
     for dataset in datasets:
         dataset_name = dataset["name"]
@@ -169,9 +168,12 @@ def test_models(
         logger.info(f"|{'-'*12}|{'-'*15}|{'-'*16}|{'-'*13}|{'-'*15}|{'-'*20}|")
 
         for model_name in models_list:
-            metrics = results[dataset_name][model_name][
+            metrics = results[dataset_name][model_name].get(
                 "use_transfer_learning" if use_transfer_learning else ""
-            ]
+            )
+            if metrics is None:
+                logger.info(f"| {model_name} | No results (checkpoint not found) |")
+                continue
             meets_exp = (
                 "Yes"
                 if metrics["accuracy"] >= expected_min_acc[dataset_name]

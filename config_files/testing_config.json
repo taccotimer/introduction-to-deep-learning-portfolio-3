@@ -1,0 +1,12 @@
+{
+    "datapath": "data/",
+    "models_list": ["AlexNet", "VGG16", "ResNet18", "SlimAlexNet"],
+    "datasets" : [
+        {"name": "cells"},
+        {"name": "chest"},
+        {"name": "lesions"},
+        {"name": "orgs"},
+        {"name": "organs", "use_transfer_learning": true},
+        {"name": "organs", "use_transfer_learning": false}
+        ]
+}
