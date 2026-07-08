@@ -1,0 +1,298 @@
+2026-07-05 18:17:20,379 - AlexNet: inference time per sample: 0.1392 ms
+2026-07-05 18:17:20,379 - Peak memory consumption: 75.98 MB [GPU (VRAM)]
+2026-07-05 18:17:21,046 - VGG16: inference time per sample: 0.1503 ms
+2026-07-05 18:17:21,046 - Peak memory consumption: 251.95 MB [GPU (VRAM)]
+2026-07-05 18:17:22,137 - ResNet18: inference time per sample: 0.2775 ms
+2026-07-05 18:17:22,137 - Peak memory consumption: 373.94 MB [GPU (VRAM)]
+2026-07-05 18:17:22,273 - SlimAlexNet: inference time per sample: 0.0162 ms
+2026-07-05 18:17:22,273 - Peak memory consumption: 31.47 MB [GPU (VRAM)]
+2026-07-05 18:17:22,380 - AlexNet: inference time per sample: 0.0325 ms
+2026-07-05 18:17:22,380 - Peak memory consumption: 73.12 MB [GPU (VRAM)]
+2026-07-05 18:17:22,565 - VGG16: inference time per sample: 0.1369 ms
+2026-07-05 18:17:22,565 - Peak memory consumption: 249.98 MB [GPU (VRAM)]
+2026-07-05 18:17:22,817 - ResNet18: inference time per sample: 0.2681 ms
+2026-07-05 18:17:22,817 - Peak memory consumption: 372.43 MB [GPU (VRAM)]
+2026-07-05 18:17:22,859 - SlimAlexNet: inference time per sample: 0.0243 ms
+2026-07-05 18:17:22,859 - Peak memory consumption: 30.56 MB [GPU (VRAM)]
+2026-07-05 18:17:23,241 - AlexNet: inference time per sample: 0.0226 ms
+2026-07-05 18:17:23,241 - Peak memory consumption: 75.60 MB [GPU (VRAM)]
+2026-07-05 18:17:23,637 - VGG16: inference time per sample: 0.1311 ms
+2026-07-05 18:17:23,637 - Peak memory consumption: 252.00 MB [GPU (VRAM)]
+2026-07-05 18:17:24,304 - ResNet18: inference time per sample: 0.2727 ms
+2026-07-05 18:17:24,304 - Peak memory consumption: 374.44 MB [GPU (VRAM)]
+2026-07-05 18:17:24,389 - SlimAlexNet: inference time per sample: 0.0152 ms
+2026-07-05 18:17:24,389 - Peak memory consumption: 31.47 MB [GPU (VRAM)]
+2026-07-05 18:17:24,872 - AlexNet: inference time per sample: 0.0200 ms
+2026-07-05 18:17:24,872 - Peak memory consumption: 73.60 MB [GPU (VRAM)]
+2026-07-05 18:17:26,124 - VGG16: inference time per sample: 0.1295 ms
+2026-07-05 18:17:26,124 - Peak memory consumption: 250.00 MB [GPU (VRAM)]
+2026-07-05 18:17:28,598 - ResNet18: inference time per sample: 0.2714 ms
+2026-07-05 18:17:28,598 - Peak memory consumption: 372.45 MB [GPU (VRAM)]
+2026-07-05 18:17:28,834 - SlimAlexNet: inference time per sample: 0.0137 ms
+2026-07-05 18:17:28,834 - Peak memory consumption: 30.60 MB [GPU (VRAM)]
+2026-07-05 18:17:28,923 - AlexNet: inference time per sample: 0.0927 ms
+2026-07-05 18:17:28,923 - Peak memory consumption: 73.60 MB [GPU (VRAM)]
+2026-07-05 18:17:29,066 - VGG16: inference time per sample: 0.1893 ms
+2026-07-05 18:17:29,066 - Peak memory consumption: 250.00 MB [GPU (VRAM)]
+2026-07-05 18:17:29,199 - ResNet18: inference time per sample: 0.2957 ms
+2026-07-05 18:17:29,199 - Peak memory consumption: 372.45 MB [GPU (VRAM)]
+2026-07-05 18:17:29,217 - File not found: SlimAlexNet_organs_use_pretrained_best.pth
+2026-07-05 18:17:29,261 - AlexNet: inference time per sample: 0.0228 ms
+2026-07-05 18:17:29,262 - Peak memory consumption: 73.60 MB [GPU (VRAM)]
+2026-07-05 18:17:29,369 - VGG16: inference time per sample: 0.1326 ms
+2026-07-05 18:17:29,369 - Peak memory consumption: 250.00 MB [GPU (VRAM)]
+2026-07-05 18:17:29,502 - ResNet18: inference time per sample: 0.2721 ms
+2026-07-05 18:17:29,502 - Peak memory consumption: 372.45 MB [GPU (VRAM)]
+2026-07-05 18:17:29,514 - File not found: SlimAlexNet_organs_best.pth
+2026-07-05 18:17:29,514 - 
+==============================================================================================================
+2026-07-05 18:17:29,514 - SUMMARY TABLE: Model Performance Across All Datasets
+2026-07-05 18:17:29,514 - ==============================================================================================================
+2026-07-05 18:17:29,514 - 
+CELLS  (Expected min accuracy: 90.0%):
+2026-07-05 18:17:29,514 - | Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |
+2026-07-05 18:17:29,516 - |------------|---------------|----------------|-------------|---------------|--------------------|
+2026-07-05 18:17:29,516 - | AlexNet | 96.49 | 96.19 | 96.33 | 96.25 | Yes |
+2026-07-05 18:17:29,516 - | VGG16 | 98.19 | 98.33 | 98.17 | 98.25 | Yes |
+2026-07-05 18:17:29,516 - | ResNet18 | 98.16 | 98.22 | 98.26 | 98.23 | Yes |
+2026-07-05 18:17:29,516 - | SlimAlexNet | 96.32 | 96.60 | 96.02 | 96.27 | Yes |
+2026-07-05 18:17:29,516 - 
+CHEST  (Expected min accuracy: 87.0%):
+2026-07-05 18:17:29,516 - | Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |
+2026-07-05 18:17:29,516 - |------------|---------------|----------------|-------------|---------------|--------------------|
+2026-07-05 18:17:29,517 - | AlexNet | 87.02 | 91.40 | 82.69 | 84.83 | Yes |
+2026-07-05 18:17:29,517 - | VGG16 | 85.26 | 90.17 | 80.43 | 82.54 | No |
+2026-07-05 18:17:29,517 - | ResNet18 | 83.33 | 89.47 | 77.78 | 79.83 | No |
+2026-07-05 18:17:29,517 - | SlimAlexNet | 87.18 | 91.24 | 82.99 | 85.08 | Yes |
+2026-07-05 18:17:29,517 - 
+LESIONS  (Expected min accuracy: 67.0%):
+2026-07-05 18:17:29,517 - | Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |
+2026-07-05 18:17:29,517 - |------------|---------------|----------------|-------------|---------------|--------------------|
+2026-07-05 18:17:29,517 - | AlexNet | 74.81 | 50.92 | 46.36 | 47.67 | Yes |
+2026-07-05 18:17:29,517 - | VGG16 | 74.46 | 48.17 | 44.61 | 45.04 | Yes |
+2026-07-05 18:17:29,517 - | ResNet18 | 75.66 | 57.06 | 54.29 | 55.54 | Yes |
+2026-07-05 18:17:29,517 - | SlimAlexNet | 76.96 | 49.86 | 48.84 | 47.60 | Yes |
+2026-07-05 18:17:29,518 - 
+ORGS  (Expected min accuracy: 83.0%):
+2026-07-05 18:17:29,518 - | Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |
+2026-07-05 18:17:29,518 - |------------|---------------|----------------|-------------|---------------|--------------------|
+2026-07-05 18:17:29,518 - | AlexNet | 90.03 | 88.84 | 89.25 | 88.95 | Yes |
+2026-07-05 18:17:29,518 - | VGG16 | 91.52 | 90.49 | 90.19 | 90.23 | Yes |
+2026-07-05 18:17:29,518 - | ResNet18 | 93.34 | 93.05 | 92.61 | 92.77 | Yes |
+2026-07-05 18:17:29,518 - | SlimAlexNet | 90.58 | 89.49 | 89.63 | 89.40 | Yes |
+2026-07-05 18:17:29,518 - 
+ORGANS with Transfer Learning (Expected min accuracy: 40.0%):
+2026-07-05 18:17:29,518 - | Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |
+2026-07-05 18:17:29,519 - |------------|---------------|----------------|-------------|---------------|--------------------|
+2026-07-05 18:17:29,519 - | AlexNet | 56.00 | 50.44 | 50.07 | 49.39 | Yes |
+2026-07-05 18:17:29,519 - | VGG16 | 56.50 | 49.43 | 49.51 | 49.07 | Yes |
+2026-07-05 18:17:29,519 - | ResNet18 | 61.50 | 58.27 | 57.27 | 55.35 | Yes |
+2026-07-05 18:17:29,519 - | SlimAlexNet | No results (checkpoint not found) |
+2026-07-05 18:17:29,519 - 
+ORGANS  (Expected min accuracy: 40.0%):
+2026-07-05 18:17:29,519 - | Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |
+2026-07-05 18:17:29,519 - |------------|---------------|----------------|-------------|---------------|--------------------|
+2026-07-05 18:17:29,519 - | AlexNet | 55.50 | 54.07 | 52.94 | 51.46 | Yes |
+2026-07-05 18:17:29,520 - | VGG16 | 54.50 | 41.50 | 48.42 | 42.84 | Yes |
+2026-07-05 18:17:29,520 - | ResNet18 | 60.00 | 60.18 | 53.35 | 53.09 | Yes |
+2026-07-05 18:17:29,520 - | SlimAlexNet | No results (checkpoint not found) |
+2026-07-05 18:43:19,179 - AlexNet: inference time per sample: 0.0677 ms
+2026-07-05 18:43:19,182 - Peak memory consumption: 75.98 MB [GPU (VRAM)]
+2026-07-05 18:43:19,782 - VGG16: inference time per sample: 0.1362 ms
+2026-07-05 18:43:19,782 - Peak memory consumption: 251.95 MB [GPU (VRAM)]
+2026-07-05 18:43:20,873 - ResNet18: inference time per sample: 0.2730 ms
+2026-07-05 18:43:20,873 - Peak memory consumption: 373.94 MB [GPU (VRAM)]
+2026-07-05 18:43:21,003 - SlimAlexNet: inference time per sample: 0.0141 ms
+2026-07-05 18:43:21,003 - Peak memory consumption: 31.47 MB [GPU (VRAM)]
+2026-07-05 18:43:21,098 - AlexNet: inference time per sample: 0.0268 ms
+2026-07-05 18:43:21,098 - Peak memory consumption: 73.12 MB [GPU (VRAM)]
+2026-07-05 18:43:21,283 - VGG16: inference time per sample: 0.1354 ms
+2026-07-05 18:43:21,283 - Peak memory consumption: 249.98 MB [GPU (VRAM)]
+2026-07-05 18:43:21,552 - ResNet18: inference time per sample: 0.2672 ms
+2026-07-05 18:43:21,552 - Peak memory consumption: 372.43 MB [GPU (VRAM)]
+2026-07-05 18:43:21,602 - SlimAlexNet: inference time per sample: 0.0238 ms
+2026-07-05 18:43:21,602 - Peak memory consumption: 30.56 MB [GPU (VRAM)]
+2026-07-05 18:43:21,833 - AlexNet: inference time per sample: 0.0227 ms
+2026-07-05 18:43:21,833 - Peak memory consumption: 75.60 MB [GPU (VRAM)]
+2026-07-05 18:43:22,223 - VGG16: inference time per sample: 0.1294 ms
+2026-07-05 18:43:22,223 - Peak memory consumption: 252.00 MB [GPU (VRAM)]
+2026-07-05 18:43:22,882 - ResNet18: inference time per sample: 0.2705 ms
+2026-07-05 18:43:22,882 - Peak memory consumption: 374.44 MB [GPU (VRAM)]
+2026-07-05 18:43:22,973 - SlimAlexNet: inference time per sample: 0.0154 ms
+2026-07-05 18:43:22,975 - Peak memory consumption: 31.47 MB [GPU (VRAM)]
+2026-07-05 18:43:23,372 - AlexNet: inference time per sample: 0.0202 ms
+2026-07-05 18:43:23,372 - Peak memory consumption: 73.60 MB [GPU (VRAM)]
+2026-07-05 18:43:24,615 - VGG16: inference time per sample: 0.1289 ms
+2026-07-05 18:43:24,615 - Peak memory consumption: 250.00 MB [GPU (VRAM)]
+2026-07-05 18:43:27,092 - ResNet18: inference time per sample: 0.2725 ms
+2026-07-05 18:43:27,092 - Peak memory consumption: 372.45 MB [GPU (VRAM)]
+2026-07-05 18:43:27,348 - SlimAlexNet: inference time per sample: 0.0143 ms
+2026-07-05 18:43:27,348 - Peak memory consumption: 30.60 MB [GPU (VRAM)]
+2026-07-05 18:43:27,428 - AlexNet: inference time per sample: 0.0625 ms
+2026-07-05 18:43:27,428 - Peak memory consumption: 73.60 MB [GPU (VRAM)]
+2026-07-05 18:43:27,574 - VGG16: inference time per sample: 0.1783 ms
+2026-07-05 18:43:27,574 - Peak memory consumption: 250.00 MB [GPU (VRAM)]
+2026-07-05 18:43:27,712 - ResNet18: inference time per sample: 0.2929 ms
+2026-07-05 18:43:27,712 - Peak memory consumption: 372.45 MB [GPU (VRAM)]
+2026-07-05 18:43:27,755 - SlimAlexNet: inference time per sample: 0.0343 ms
+2026-07-05 18:43:27,755 - Peak memory consumption: 30.60 MB [GPU (VRAM)]
+2026-07-05 18:43:27,804 - AlexNet: inference time per sample: 0.0243 ms
+2026-07-05 18:43:27,804 - Peak memory consumption: 73.60 MB [GPU (VRAM)]
+2026-07-05 18:43:27,919 - VGG16: inference time per sample: 0.1303 ms
+2026-07-05 18:43:27,919 - Peak memory consumption: 250.00 MB [GPU (VRAM)]
+2026-07-05 18:43:28,052 - ResNet18: inference time per sample: 0.2692 ms
+2026-07-05 18:43:28,052 - Peak memory consumption: 372.45 MB [GPU (VRAM)]
+2026-07-05 18:43:28,079 - SlimAlexNet: inference time per sample: 0.0182 ms
+2026-07-05 18:43:28,080 - Peak memory consumption: 30.60 MB [GPU (VRAM)]
+2026-07-05 18:43:28,085 - 
+==============================================================================================================
+2026-07-05 18:43:28,085 - SUMMARY TABLE: Model Performance Across All Datasets
+2026-07-05 18:43:28,085 - ==============================================================================================================
+2026-07-05 18:43:28,085 - 
+CELLS  (Expected min accuracy: 90.0%):
+2026-07-05 18:43:28,086 - | Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |
+2026-07-05 18:43:28,086 - |------------|---------------|----------------|-------------|---------------|--------------------|
+2026-07-05 18:43:28,086 - | AlexNet | 96.49 | 96.19 | 96.33 | 96.25 | Yes |
+2026-07-05 18:43:28,086 - | VGG16 | 98.19 | 98.33 | 98.17 | 98.25 | Yes |
+2026-07-05 18:43:28,086 - | ResNet18 | 98.16 | 98.22 | 98.26 | 98.23 | Yes |
+2026-07-05 18:43:28,086 - | SlimAlexNet | 96.32 | 96.60 | 96.02 | 96.27 | Yes |
+2026-07-05 18:43:28,086 - 
+CHEST  (Expected min accuracy: 87.0%):
+2026-07-05 18:43:28,086 - | Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |
+2026-07-05 18:43:28,086 - |------------|---------------|----------------|-------------|---------------|--------------------|
+2026-07-05 18:43:28,087 - | AlexNet | 87.02 | 91.40 | 82.69 | 84.83 | Yes |
+2026-07-05 18:43:28,087 - | VGG16 | 85.26 | 90.17 | 80.43 | 82.54 | No |
+2026-07-05 18:43:28,087 - | ResNet18 | 83.33 | 89.47 | 77.78 | 79.83 | No |
+2026-07-05 18:43:28,087 - | SlimAlexNet | 87.18 | 91.24 | 82.99 | 85.08 | Yes |
+2026-07-05 18:43:28,087 - 
+LESIONS  (Expected min accuracy: 67.0%):
+2026-07-05 18:43:28,087 - | Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |
+2026-07-05 18:43:28,087 - |------------|---------------|----------------|-------------|---------------|--------------------|
+2026-07-05 18:43:28,088 - | AlexNet | 74.81 | 50.92 | 46.36 | 47.67 | Yes |
+2026-07-05 18:43:28,088 - | VGG16 | 74.46 | 48.17 | 44.61 | 45.04 | Yes |
+2026-07-05 18:43:28,088 - | ResNet18 | 75.66 | 57.06 | 54.29 | 55.54 | Yes |
+2026-07-05 18:43:28,088 - | SlimAlexNet | 76.96 | 49.86 | 48.84 | 47.60 | Yes |
+2026-07-05 18:43:28,088 - 
+ORGS  (Expected min accuracy: 83.0%):
+2026-07-05 18:43:28,088 - | Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |
+2026-07-05 18:43:28,088 - |------------|---------------|----------------|-------------|---------------|--------------------|
+2026-07-05 18:43:28,088 - | AlexNet | 90.03 | 88.84 | 89.25 | 88.95 | Yes |
+2026-07-05 18:43:28,088 - | VGG16 | 91.52 | 90.49 | 90.19 | 90.23 | Yes |
+2026-07-05 18:43:28,088 - | ResNet18 | 93.34 | 93.05 | 92.61 | 92.77 | Yes |
+2026-07-05 18:43:28,088 - | SlimAlexNet | 90.58 | 89.49 | 89.63 | 89.40 | Yes |
+2026-07-05 18:43:28,089 - 
+ORGANS with Transfer Learning (Expected min accuracy: 40.0%):
+2026-07-05 18:43:28,089 - | Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |
+2026-07-05 18:43:28,089 - |------------|---------------|----------------|-------------|---------------|--------------------|
+2026-07-05 18:43:28,089 - | AlexNet | 56.00 | 50.44 | 50.07 | 49.39 | Yes |
+2026-07-05 18:43:28,089 - | VGG16 | 56.50 | 49.43 | 49.51 | 49.07 | Yes |
+2026-07-05 18:43:28,089 - | ResNet18 | 61.50 | 58.27 | 57.27 | 55.35 | Yes |
+2026-07-05 18:43:28,089 - | SlimAlexNet | 60.50 | 59.31 | 53.38 | 52.22 | Yes |
+2026-07-05 18:43:28,089 - 
+ORGANS with Transfer Learning (Expected min accuracy: 40.0%):
+2026-07-05 18:43:28,089 - | Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |
+2026-07-05 18:43:28,089 - |------------|---------------|----------------|-------------|---------------|--------------------|
+2026-07-05 18:43:28,089 - | AlexNet | 56.00 | 50.44 | 50.07 | 49.39 | Yes |
+2026-07-05 18:43:28,090 - | VGG16 | 56.50 | 49.43 | 49.51 | 49.07 | Yes |
+2026-07-05 18:43:28,090 - | ResNet18 | 61.50 | 58.27 | 57.27 | 55.35 | Yes |
+2026-07-05 18:43:28,090 - | SlimAlexNet | 60.50 | 59.31 | 53.38 | 52.22 | Yes |
+2026-07-05 18:48:04,866 - AlexNet: inference time per sample: 0.0673 ms
+2026-07-05 18:48:04,866 - Peak memory consumption: 75.98 MB [GPU (VRAM)]
+2026-07-05 18:48:05,533 - VGG16: inference time per sample: 0.1534 ms
+2026-07-05 18:48:05,533 - Peak memory consumption: 251.95 MB [GPU (VRAM)]
+2026-07-05 18:48:06,712 - ResNet18: inference time per sample: 0.3039 ms
+2026-07-05 18:48:06,712 - Peak memory consumption: 373.94 MB [GPU (VRAM)]
+2026-07-05 18:48:06,848 - SlimAlexNet: inference time per sample: 0.0160 ms
+2026-07-05 18:48:06,848 - Peak memory consumption: 31.47 MB [GPU (VRAM)]
+2026-07-05 18:48:06,943 - AlexNet: inference time per sample: 0.0298 ms
+2026-07-05 18:48:06,943 - Peak memory consumption: 73.12 MB [GPU (VRAM)]
+2026-07-05 18:48:07,129 - VGG16: inference time per sample: 0.1546 ms
+2026-07-05 18:48:07,129 - Peak memory consumption: 249.98 MB [GPU (VRAM)]
+2026-07-05 18:48:07,402 - ResNet18: inference time per sample: 0.3011 ms
+2026-07-05 18:48:07,402 - Peak memory consumption: 372.43 MB [GPU (VRAM)]
+2026-07-05 18:48:07,452 - SlimAlexNet: inference time per sample: 0.0244 ms
+2026-07-05 18:48:07,452 - Peak memory consumption: 30.56 MB [GPU (VRAM)]
+2026-07-05 18:48:07,686 - AlexNet: inference time per sample: 0.0248 ms
+2026-07-05 18:48:07,686 - Peak memory consumption: 75.60 MB [GPU (VRAM)]
+2026-07-05 18:48:08,117 - VGG16: inference time per sample: 0.1473 ms
+2026-07-05 18:48:08,117 - Peak memory consumption: 252.00 MB [GPU (VRAM)]
+2026-07-05 18:48:08,854 - ResNet18: inference time per sample: 0.3055 ms
+2026-07-05 18:48:08,854 - Peak memory consumption: 374.44 MB [GPU (VRAM)]
+2026-07-05 18:48:08,945 - SlimAlexNet: inference time per sample: 0.0175 ms
+2026-07-05 18:48:08,945 - Peak memory consumption: 31.47 MB [GPU (VRAM)]
+2026-07-05 18:48:09,362 - AlexNet: inference time per sample: 0.0221 ms
+2026-07-05 18:48:09,362 - Peak memory consumption: 73.60 MB [GPU (VRAM)]
+2026-07-05 18:48:10,722 - VGG16: inference time per sample: 0.1419 ms
+2026-07-05 18:48:10,722 - Peak memory consumption: 250.00 MB [GPU (VRAM)]
+2026-07-05 18:48:13,482 - ResNet18: inference time per sample: 0.3032 ms
+2026-07-05 18:48:13,482 - Peak memory consumption: 372.45 MB [GPU (VRAM)]
+2026-07-05 18:48:13,764 - SlimAlexNet: inference time per sample: 0.0154 ms
+2026-07-05 18:48:13,764 - Peak memory consumption: 30.60 MB [GPU (VRAM)]
+2026-07-05 18:48:13,847 - AlexNet: inference time per sample: 0.0639 ms
+2026-07-05 18:48:13,848 - Peak memory consumption: 73.60 MB [GPU (VRAM)]
+2026-07-05 18:48:14,008 - VGG16: inference time per sample: 0.2455 ms
+2026-07-05 18:48:14,008 - Peak memory consumption: 250.00 MB [GPU (VRAM)]
+2026-07-05 18:48:14,206 - ResNet18: inference time per sample: 0.4063 ms
+2026-07-05 18:48:14,207 - Peak memory consumption: 372.45 MB [GPU (VRAM)]
+2026-07-05 18:48:14,248 - SlimAlexNet: inference time per sample: 0.0496 ms
+2026-07-05 18:48:14,248 - Peak memory consumption: 30.60 MB [GPU (VRAM)]
+2026-07-05 18:48:14,322 - AlexNet: inference time per sample: 0.0312 ms
+2026-07-05 18:48:14,322 - Peak memory consumption: 73.60 MB [GPU (VRAM)]
+2026-07-05 18:48:14,464 - VGG16: inference time per sample: 0.1484 ms
+2026-07-05 18:48:14,464 - Peak memory consumption: 250.00 MB [GPU (VRAM)]
+2026-07-05 18:48:14,636 - ResNet18: inference time per sample: 0.3188 ms
+2026-07-05 18:48:14,636 - Peak memory consumption: 372.45 MB [GPU (VRAM)]
+2026-07-05 18:48:14,664 - SlimAlexNet: inference time per sample: 0.0194 ms
+2026-07-05 18:48:14,664 - Peak memory consumption: 30.60 MB [GPU (VRAM)]
+2026-07-05 18:48:14,671 - 
+==============================================================================================================
+2026-07-05 18:48:14,671 - SUMMARY TABLE: Model Performance Across All Datasets
+2026-07-05 18:48:14,671 - ==============================================================================================================
+2026-07-05 18:48:14,671 - 
+CELLS  (Expected min accuracy: 90.0%):
+2026-07-05 18:48:14,672 - | Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |
+2026-07-05 18:48:14,672 - |------------|---------------|----------------|-------------|---------------|--------------------|
+2026-07-05 18:48:14,672 - | AlexNet | 96.49 | 96.19 | 96.33 | 96.25 | Yes |
+2026-07-05 18:48:14,672 - | VGG16 | 98.19 | 98.33 | 98.17 | 98.25 | Yes |
+2026-07-05 18:48:14,672 - | ResNet18 | 98.16 | 98.22 | 98.26 | 98.23 | Yes |
+2026-07-05 18:48:14,672 - | SlimAlexNet | 96.32 | 96.60 | 96.02 | 96.27 | Yes |
+2026-07-05 18:48:14,672 - 
+CHEST  (Expected min accuracy: 87.0%):
+2026-07-05 18:48:14,672 - | Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |
+2026-07-05 18:48:14,672 - |------------|---------------|----------------|-------------|---------------|--------------------|
+2026-07-05 18:48:14,672 - | AlexNet | 87.02 | 91.40 | 82.69 | 84.83 | Yes |
+2026-07-05 18:48:14,672 - | VGG16 | 85.26 | 90.17 | 80.43 | 82.54 | No |
+2026-07-05 18:48:14,672 - | ResNet18 | 83.33 | 89.47 | 77.78 | 79.83 | No |
+2026-07-05 18:48:14,672 - | SlimAlexNet | 87.18 | 91.24 | 82.99 | 85.08 | Yes |
+2026-07-05 18:48:14,672 - 
+LESIONS  (Expected min accuracy: 67.0%):
+2026-07-05 18:48:14,672 - | Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |
+2026-07-05 18:48:14,672 - |------------|---------------|----------------|-------------|---------------|--------------------|
+2026-07-05 18:48:14,672 - | AlexNet | 74.81 | 50.92 | 46.36 | 47.67 | Yes |
+2026-07-05 18:48:14,672 - | VGG16 | 74.46 | 48.17 | 44.61 | 45.04 | Yes |
+2026-07-05 18:48:14,672 - | ResNet18 | 75.66 | 57.06 | 54.29 | 55.54 | Yes |
+2026-07-05 18:48:14,672 - | SlimAlexNet | 76.96 | 49.86 | 48.84 | 47.60 | Yes |
+2026-07-05 18:48:14,672 - 
+ORGS  (Expected min accuracy: 83.0%):
+2026-07-05 18:48:14,672 - | Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |
+2026-07-05 18:48:14,672 - |------------|---------------|----------------|-------------|---------------|--------------------|
+2026-07-05 18:48:14,672 - | AlexNet | 90.03 | 88.84 | 89.25 | 88.95 | Yes |
+2026-07-05 18:48:14,672 - | VGG16 | 91.52 | 90.49 | 90.19 | 90.23 | Yes |
+2026-07-05 18:48:14,672 - | ResNet18 | 93.34 | 93.05 | 92.61 | 92.77 | Yes |
+2026-07-05 18:48:14,672 - | SlimAlexNet | 90.58 | 89.49 | 89.63 | 89.40 | Yes |
+2026-07-05 18:48:14,672 - 
+ORGANS with Transfer Learning (Expected min accuracy: 40.0%):
+2026-07-05 18:48:14,672 - | Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |
+2026-07-05 18:48:14,672 - |------------|---------------|----------------|-------------|---------------|--------------------|
+2026-07-05 18:48:14,672 - | AlexNet | 56.00 | 50.44 | 50.07 | 49.39 | Yes |
+2026-07-05 18:48:14,672 - | VGG16 | 56.50 | 49.43 | 49.51 | 49.07 | Yes |
+2026-07-05 18:48:14,672 - | ResNet18 | 61.50 | 58.27 | 57.27 | 55.35 | Yes |
+2026-07-05 18:48:14,672 - | SlimAlexNet | 60.50 | 59.31 | 53.38 | 52.22 | Yes |
+2026-07-05 18:48:14,672 - 
+ORGANS  (Expected min accuracy: 40.0%):
+2026-07-05 18:48:14,672 - | Model | Accuracy (%) | Precision (%) | Recall (%) | F1-Score (%) | Meets Expectation |
+2026-07-05 18:48:14,674 - |------------|---------------|----------------|-------------|---------------|--------------------|
+2026-07-05 18:48:14,674 - | AlexNet | 55.50 | 54.07 | 52.94 | 51.46 | Yes |
+2026-07-05 18:48:14,674 - | VGG16 | 54.50 | 41.50 | 48.42 | 42.84 | Yes |
+2026-07-05 18:48:14,674 - | ResNet18 | 60.00 | 60.18 | 53.35 | 53.09 | Yes |
+2026-07-05 18:48:14,674 - | SlimAlexNet | 64.00 | 63.85 | 61.27 | 60.33 | Yes |
