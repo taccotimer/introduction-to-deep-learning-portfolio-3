@@ -22,26 +22,8 @@ and (v) the exact git commit hash containing the fix
 
 DONE
 
-Consolidated Benchmark Report: A brief evaluation report (submitted as REPORT.md
-or REPORT.pdf in your repository root) comparing the final performance of the corrected
-models across all configuration permutations. This must include a clean summary table
-capturing key metrics (accuracy, precision, recall, and macro F1-score) along with ar-
-chitectural recommendations for optimal dataset/model pairings based on your observed
-benchmarks. Expected minimal accuracy performance on test data: cells: 90%, chest:
-87%, lesions: 67%, orgs: 83%.
-
-DONE
-
 Architectural Downscaling: Come up with an architecture with reduced complexity
 to minimize runtime and memory usage while maintaining performance.
-
-DONE
-
-Efficiency Verification Matrix: Expand your automated orchestration runner to profile
-and log the resource consumption of each model. For every dataset-model permutation,
-your tracking metrics must now include: (i) total training runtime duration, (ii) inference
-latency per sample, and (iii) peak memory consumption during training and inference
-phases.
 
 DONE
 
@@ -57,16 +39,3 @@ ing regime. Determine how to exploit structural features learned from your large
 image profiles to maximize performance on the new, limited organs data.
 
 DONE
-
-Scarce-Data Benchmark Matrix: Expand your automated runner to track and log
-the performance behavior of this new data under different training states (e.g., training
-from completely scratch vs. leveraging transferred feature knowledge).
-
-DONE
-
-Data-Scarcity Post-Mortem: Dedicated analysis in the final report (REPORT.md) an-
-alyzing quantitatively the impact of the innovative approaches, comparison to standard
-baseline training and expert summary and recommendations. The chief hopes for at least
-40% accuracy on the test set.
-
-in progress
