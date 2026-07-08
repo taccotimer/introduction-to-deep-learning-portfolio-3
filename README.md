@@ -20,6 +20,7 @@ Code/
   data.py                 Loads the data and builds the DataLoaders
   training_framework.py   Runs training for several configs in a row
   testing_framework.py    Tests trained models, builds the results table
+  parametercount.py       Gives the number of parameters of a model
 config_files/              Two json files `config.json' and `testing_config.json' where models and datasets are configured
 data/                       Datasets (.pt files, see below)
 *_best.pth                  Saved, best weights after training for each model, the models with use_pretrained are models which used transfer leaning

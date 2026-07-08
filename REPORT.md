@@ -103,16 +103,16 @@
 | SlimAlexNet | organs  | Transfer Learning | 60.50 | 1.47    | 94.98   | 0.0496 | 30.60  |
 
 ## Green Initiative Analysis
-- **SlimAlexNet** is our downscaled model: it achieves ~2–20x less peak memory and up to ~10x faster inference than AlexNet, and up to ~40x less memory / ~17x faster inference than ResNet18, across every dataset it has been trained on. It achieves at every Dataset the minimum accuracy including on `organs`, where it reaches the highest scratch accuracy of any model (64.00%) at a fraction of the training cost.
+- **SlimAlexNet** is our downscaled model: it achieves ~2–20x less peak memory and slightly faster inference than AlexNet, and up to ~40x less memory / ~17x faster inference than ResNet18, across every dataset it has been trained on. It achieves at every Dataset the minimum accuracy including on `organs`, where it reaches the highest scratch accuracy of any model (64.00%) at a fraction of the training cost.
 - **ResNet18** is the most expensive model on every axis (training time, training memory, inference time, inference memory), despite topping the accuracy tables. It shows a accuracy/computation trade-off.
 
 ## Architectural Complexity (Parameter Count)
 
-`SlimAlexNet` implements the Architectural Downscaling requirement in the model definition: every convolutional/linear width from `AlexNet` is scaled down by 0.5x, yielding a smaller parameter count at the same depth. And one linear layer was removed completely. Counts below are for a representative 3-channel, 4-class configuration (`cells`).
+`SlimAlexNet` implements the Architectural Downscaling requirement in the model definition: every convolutional/linear width from `AlexNet` is scaled down by 0.5x. And one linear layer was removed completely. That  yielding a smaller parameter count. Counts below are for a representative 3-channel, 4-class configuration (`cells`).
 
 | Model       | Parameters | Relative to SlimAlexNet |
 |-------------|-----------:|:------------------------:|
-| SlimAlexNet | 1,952,308  | 1.0x (baseline)          |
-| AlexNet     | 5,689,444  | 2.9x more                |
-| ResNet18    | 11,170,884 | 5.7x more                |
-| VGG16       | 12,629,572 | 6.5x more                |
+| SlimAlexNet | 1,956,586  | 1.0x (baseline)          |
+| AlexNet     | 5,693,898  | 2.9x more                |
+| ResNet18    | 11,182,556 | 5.7x more                |
+| VGG16       | 12,640,085 | 6.5x more                |
