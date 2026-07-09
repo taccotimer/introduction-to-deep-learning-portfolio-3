@@ -11,13 +11,17 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from fit import Trainer
+import os
 
 from data import get_loaders
 
+TRAINED_MODELS_DIR = "trained_models"
 
-def main(config):
-    torch.manual_seed(42)
-    torch.cuda.manual_seed(42)
+def main(config, with_seed=True):
+    if with_seed:
+        torch.manual_seed(42)
+        torch.cuda.manual_seed(42)
+    os.makedirs(TRAINED_MODELS_DIR, exist_ok=True)
     
     if config is None:
         print("No config provided, loading default config.json")
@@ -61,10 +65,13 @@ def main(config):
 
     trainer = Trainer(model, criterion, optimizer, device)
     trainer.fit(train_loader, val_loader, epochs=config["EPOCHS"])
-
+    save_path = os.path.join(
+        TRAINED_MODELS_DIR,
+        f"{config['MODEL']}_{config['DATA']}{('_use_pretrained' if use_pretrained else '')}_best.pth",
+    )
     torch.save(
         trainer.best_model_state,
-        f"{config['MODEL']}_{config['DATA']}{('_use_pretrained' if use_pretrained else '')}_best.pth",
+        save_path,
     )
 
 

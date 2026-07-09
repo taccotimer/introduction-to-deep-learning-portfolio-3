@@ -21,11 +21,12 @@ Code/
   training_framework.py   Runs training for several configs in a row
   testing_framework.py    Tests trained models, builds the results table
   parametercount.py       Gives the number of parameters of a model
-config_files/              Two json files `config.json' and `testing_config.json' where models and datasets are configured
-data/                       Datasets (.pt files, see below)
-*_best.pth                  Saved, best weights after training for each model, the models with use_pretrained are models which used transfer leaning
-AUDIT_LOG.md                List of found and fixed bugs
-REPORT.md                   Results and evaluation
+config_files/             Two json files `config.json' and `testing_config.json' where models and datasets are configured
+data/                     Datasets (.pt files, see below)
+trained_models/           All trained models are stored here
+  *_best.pth              Saved, best weights after training for each model, the models with use_pretrained are models which used transfer leaning
+AUDIT_LOG.md              List of found and fixed bugs
+REPORT.md                 Results and evaluation
 ```
 
 ## Requirements

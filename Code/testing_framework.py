@@ -9,19 +9,22 @@ from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_sc
 
 from data import get_loaders
 import json
-
+import os
 """
 Test all models on all datasets and compute comprehensive metrics.
 Saves results to a summary table with accuracy, precision, recall, and F1-score.
 """
 
+TRAINED_MODELS_DIR = "trained_models"
 
 def test_models(
-    config_file="config_files/testing_config.json"
+    config_file="config_files/testing_config.json",
+    with_seed=True
 ):
-    torch.manual_seed(42)
-    torch.cuda.manual_seed(42)
-    np.random.seed(42)
+    if with_seed:   
+        torch.manual_seed(42)
+        torch.cuda.manual_seed(42)
+        np.random.seed(42)
 
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
@@ -40,7 +43,7 @@ def test_models(
 
     with open(config_file, "r") as f:
         config = json.load(f)
-        
+
         datasets = config["datasets"]
         models_list = config["models_list"]
         datapath = config["datapath"]
@@ -62,9 +65,14 @@ def test_models(
             )
 
             if use_transfer_learning:
-                name = f"{model_name}_{dataset_name}_use_pretrained_best.pth"
+                name = os.path.join(
+                    TRAINED_MODELS_DIR,
+                    f"{model_name}_{dataset_name}_use_pretrained_best.pth",
+                )
             else:
-                name = f"{model_name}_{dataset_name}_best.pth"
+                name = os.path.join(
+                    TRAINED_MODELS_DIR, f"{model_name}_{dataset_name}_best.pth"
+                )
 
             try:
                 state_dict = torch.load(
@@ -90,14 +98,14 @@ def test_models(
             with torch.no_grad():
                 for images, labels in test_loader:
                     images, labels = images.to(device), labels.to(device)
-                    #synchronize and start timer
+                    # synchronize and start timer
                     if device.type == 'cuda':
                         torch.cuda.synchronize()
                     start_time = time.perf_counter()
 
                     outputs = test_model(images)
-                    
-                    #synchronize and stop timer
+
+                    # synchronize and stop timer
                     if device.type == 'cuda':
                         torch.cuda.synchronize()
                     end_time = time.perf_counter()
