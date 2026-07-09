@@ -15,13 +15,12 @@ import os
 
 from data import get_loaders
 
-TRAINED_MODELS_DIR = "trained_models"
 
-def main(config, with_seed=True):
+def main(config, trained_models_dir="trained_models", with_seed=True):
     if with_seed:
         torch.manual_seed(42)
         torch.cuda.manual_seed(42)
-    os.makedirs(TRAINED_MODELS_DIR, exist_ok=True)
+    os.makedirs(trained_models_dir, exist_ok=True)
     
     if config is None:
         print("No config provided, loading default config.json")
@@ -66,7 +65,7 @@ def main(config, with_seed=True):
     trainer = Trainer(model, criterion, optimizer, device)
     trainer.fit(train_loader, val_loader, epochs=config["EPOCHS"])
     save_path = os.path.join(
-        TRAINED_MODELS_DIR,
+        trained_models_dir,
         f"{config['MODEL']}_{config['DATA']}{('_use_pretrained' if use_pretrained else '')}_best.pth",
     )
     torch.save(

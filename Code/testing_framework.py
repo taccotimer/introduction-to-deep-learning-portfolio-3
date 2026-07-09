@@ -15,11 +15,12 @@ Test all models on all datasets and compute comprehensive metrics.
 Saves results to a summary table with accuracy, precision, recall, and F1-score.
 """
 
-TRAINED_MODELS_DIR = "trained_models"
+
 
 def test_models(
     config_file="config_files/testing_config.json",
-    with_seed=True
+    trained_models_dir="trained_models",
+    with_seed=True,
 ):
     if with_seed:   
         torch.manual_seed(42)
@@ -66,12 +67,12 @@ def test_models(
 
             if use_transfer_learning:
                 name = os.path.join(
-                    TRAINED_MODELS_DIR,
+                    trained_models_dir,
                     f"{model_name}_{dataset_name}_use_pretrained_best.pth",
                 )
             else:
                 name = os.path.join(
-                    TRAINED_MODELS_DIR, f"{model_name}_{dataset_name}_best.pth"
+                    trained_models_dir, f"{model_name}_{dataset_name}_best.pth"
                 )
 
             try:

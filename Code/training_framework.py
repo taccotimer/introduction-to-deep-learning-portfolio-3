@@ -5,6 +5,7 @@ from train import main as train_main
 
 def train_main_runs(
     config_file="config_files/config.json",
+    trained_models_dir="trained_models",
     with_seed=True
 ):
     
